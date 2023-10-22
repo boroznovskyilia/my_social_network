@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block head %} 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<title>Add to chatt</title>
+<link rel="stylesheet" href="/static/add_user.css">
+{% endblock head %}
+{% block content %}
+
+<div class="container">
+    <h1 class="text-center mt-5 mb-4">Add user to chat</h1>
+    <form id="create-form">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name of user:</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+    <div id="error-container" class="alert alert-danger mt-4" style="display:none">
+        <button id="error-button" class="btn btn-danger">Retry</button>
+    </div>
+    <div id="success-container" class="alert alert-success mt-4" style="display:none">
+        <h2>Added successfully.</h2>
+    </div>
+</div>
+<script src = "{{url_for('scripts',path='add_user.js') }}"></script>
+{% endblock %}

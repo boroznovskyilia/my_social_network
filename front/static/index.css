@@ -1,0 +1,25 @@
+body {
+    background-color: #cae3c4;
+    font-family: Arial, sans-serif; 
+}
+.page-title {
+    text-align: center;
+    font-size: 4rem; 
+    color: #4CAF50; 
+    margin-top: 100px; 
+    font-family: 'Verdana', sans-serif; 
+}
+.nav-link {
+    font-size: 1.5rem; 
+    color: #4CAF50; 
+    transition: color 0.3s; 
+    text-decoration: none !important; 
+    font-family: 'Arial', sans-serif;
+}
+.nav-link:hover {
+    color: #299467f8;
+}
+.page-title{
+    color:#299467f8
+}
+ 

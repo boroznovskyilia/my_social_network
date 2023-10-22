@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block head %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="static/create_account.css">
+{% endblock head %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center mt-5 mb-4">Create Account</h1>
+    <form id="create-form">
+        <div class="mb-3">
+            <label for="username" class="form-label">Username:</label>
+            <input type="text" id="username" name="username" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" id="email" name="email" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+    <div id="error-container" class="alert alert-danger mt-4" style="display:none">
+        <h2>This username already exists.</h2>
+        <button id="error-button" class="btn btn-danger">Retry</button>
+    </div>
+    <div id="success-container" class="alert alert-success mt-4" style="display:none">
+        <h2>Account created successfully.</h2>
+    </div>
+</div>
+<script src="{{url_for('scripts', path='create_account.js')}}"></script>
+{% endblock %}
+
+

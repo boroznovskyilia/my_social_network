@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block head %}
+    <title>Chats</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/chats.css">
+{% endblock head %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center mt-5 mb-4">My Chats</h1>
+    <ul class="list-unstyled">
+        <li id="create-chat" class="mb-3">
+            <a href="{{ url_for("create_chat") }}" class="btn btn-primary">Create Chat</a>
+        </li>
+    </ul>
+    <div id="error-container" class="alert alert-danger" style="display:none">
+        <h2>Wrong password or username</h2>
+        <button id="error-button" class="btn btn-danger">Retry</button>
+    </div>
+    <div id="chats-container"></div>
+</div>
+<script src="{{ url_for('scripts', path='chats.js') }}"></script>
+{% endblock %}

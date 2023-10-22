@@ -1,0 +1,44 @@
+body {
+    background-color: #cae3c4;
+}
+
+#user_account-container {
+    background-color: #299467f8;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
+
+.text-primary {
+    color: #fff !important;
+}
+
+.text-secondary {
+    color: #000;
+}
+.post {
+    background-color: #f2f2f2;
+    width: 100%;
+    padding: 10px;
+    margin: 20px auto; /* Center the post div horizontally */
+    text-align: center; /* Center-align text content */
+}
+
+.post-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: center
+}
+.post-author {
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+    text-align: center
+}
+
+.post-content {
+    font-size: 16px;
+    color: #555;
+    word-wrap: break-word;
+}

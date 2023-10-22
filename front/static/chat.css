@@ -1,0 +1,54 @@
+body {
+    background-color: #cae3c4;
+}
+.message-container {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #cae3c4;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.message {
+    background-color: #cae3c4;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.message-author {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.message-content {
+    display: inline;
+}
+
+.message-form {
+    position: sticky;
+    bottom: 0;
+    background-color: #cae3c4;
+    padding: 10px;
+}
+
+.messages-container {
+    max-height: calc(100vh - 250px); /* Adjust this value as needed */
+    overflow-y: auto;
+}
+
+/* Make the title, links, and message input sticky */
+#top_of_page {
+    top: 0;
+    position: sticky;
+    background-color: #cae3c4;
+    padding: 10px;
+    border-bottom: 5px solid #ccc;
+    z-index: 1;
+    color:#056d55
+}
+#messages_on_page {
+    box-shadow: 0px -5px 5px -5px rgba(0, 0, 0, 0.5);
+}

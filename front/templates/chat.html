@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block head %}
+    <title>Chat {{ chat_name }}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/chat.css">  
+{% endblock head %}
+
+{% block content %}
+
+<div class="container">
+    <div id="top_of_page">
+        <h1 id="tittle" class="text-center mt-5 mb-4">Chat Room</h1>
+        <p id="chat_name" class="text-center">Chat: {{ chat_name }}</p>
+        <ul id="chat_links" class="list-unstyled d-flex justify-content-between align-items-center mb-4">
+            <li><a id="add_user" href="{{ url_for('add_user', chat_id=chat_id) }}" class="btn btn-primary">Add User</a></li>
+            <li><a id="chat_members" href="{{ url_for('members', chat_id=chat_id) }}" class="btn btn-primary">Chat Members</a></li>
+            <li><button id="leave" class="btn btn-danger">Leave Chat</button></li>
+        </ul>
+    </div>
+
+    <div id="messages_on_page" class="messages-container">
+        <div id="prev_message-container">
+        </div>
+
+        <div id="messages-container" class="message-container">
+            <div id="messages"></div>
+        </div>
+    </div>
+
+    <form id="message-form" class="message-form">
+        <input type="text" id="messageText" class="form-control" autocomplete="off" placeholder="Type your message...">
+        <button id="send_button" class="btn btn-primary">Send</button>
+        <button id="scroll_to_latest" class="btn btn-secondary">Scroll to Latest</button>
+    </form>
+</div>
+
+<script src="{{ url_for('scripts', path='chat.js') }}"></script>
+
+{% endblock %}

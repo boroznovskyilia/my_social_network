@@ -1,0 +1,21 @@
+body {
+    background-color: #cae3c4; 
+    font-family: Arial, sans-serif; 
+    color: white; 
+}
+.jumbotron {
+    background-color: #299467f8; 
+}
+.jumbotron h1 {
+    font-size: 36px; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    font-weight: bold; 
+}
+.login-form-container {
+    background-color: #299467f8; 
+    border-radius: 30px;
+}
+.login-form input {
+    background-color: #cae3c4; 
+    color: white; 
+}
