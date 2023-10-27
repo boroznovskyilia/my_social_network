@@ -63,7 +63,7 @@ async function fetchUserChat() {
             event.preventDefault()
             var input = document.getElementById("messageText")
             if (input.value.trim() != ''){
-                ws.send(JSON.stringify({text:input.value,user_id:user_id,user_name:user_name}))
+                ws.send(JSON.stringify({text:input.value,token:token}))
                 input.value = ''
             }
            

@@ -11,9 +11,9 @@ class PostShow(PostCreate):
     user_id:int
 
 class ShowChat(BaseModel):
-    user_id:int
-    chat:ChatInChats
-    user_name:str
+    # user_id:int
+    # chat:ChatInChats
+    # user_name:str
     previous_messages:List[Message]
 
 class ShowUsers(BaseModel):

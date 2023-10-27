@@ -29,10 +29,11 @@ async def show_chat(chat_id:int,current_user = Depends(get_current_active_user),
 
 @router.websocket("/chats/{chat_id}")
 async def show_chat(websocket:WebSocket,chat_id:int,db = Depends(get_db)):
-    await ChatSeviceTemplate().connect_chat(websocket,chat_id,db)
+        # current_user = await get_current_active_user()
+        await ChatSeviceTemplate().connect_chat(websocket,chat_id,db)
 
 @router.post("/chats/{chat_id}/add_user",tags = ["chat"])
-async def add_user(chat_id:int,name:str = Form(),db:AsyncSession = Depends(get_db),current_user = Depends(get_current_active_user)):
+async def add_user(chat_id:int,name:str = Form(),db:AsyncSession = Depends(get_db),current_user:UserShow = Depends(get_current_active_user)):
     result = await ChatSeviceTemplate().add_user(chat_id,name,db,current_user)
     return result
 

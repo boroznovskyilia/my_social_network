@@ -10,6 +10,8 @@ from auth.schema import TokenData
 from user.service_db import UserServiceDB as User
 from typing_extensions import Annotated
 from response_generic import IResponseBase
+from fastapi import WebSocket
+from starlette.websockets import WebSocket as StarletteWebSocket
 
 async def get_db() -> AsyncGenerator:
     try:
@@ -43,3 +45,25 @@ async def get_current_user(*,db:AsyncSession = Depends(get_db),token: Annotated[
 
 async def get_current_active_user(*,current_user: Annotated[UserInDb,Depends(get_current_user)]):
     return current_user
+
+async def get_user_by_token_from_ws(token,db:AsyncSession):
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"Authorization":"Bearer"},
+    )
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        id: str = payload.get("sub")
+        if id is None:
+            IResponseBase[str](status="unsuccess")
+            raise credentials_exception
+        token_data = TokenData(id=id)
+    except JWTError:
+        raise credentials_exception
+    id = int(id)
+    user = await User().get_user(id=int(token_data.id),db=db)
+    if user is None:
+        IResponseBase[str](status="unsuccess")
+        raise credentials_exception
+    return user

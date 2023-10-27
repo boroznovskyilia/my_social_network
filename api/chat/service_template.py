@@ -1,10 +1,12 @@
-from fastapi import APIRouter,HTTPException, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, Depends,HTTPException, WebSocket, WebSocketDisconnect
 from user.service_db import UserServiceDB
 from sqlalchemy.ext.asyncio import AsyncSession
 from chat.service import ChatService,MessageService
 from chat.schema import ChatInChats
-from .ws import ConnectionManager as ws_manager
+from .ws import WebSocketManager as ws_manager
 from cache.chat_message_cache import ChatMessageCache
+from auth.utils import get_current_active_user,get_user_by_token_from_ws
+from starlette.websockets import WebSocket as StarletteWebsocket
 
 router = APIRouter()
 
@@ -41,18 +43,22 @@ class ChatSeviceTemplate(ChatService):
 
     async def connect_chat(self,websocket:WebSocket,chat_id:int,db):
         manager = ws_manager()
-        await manager.connect(websocket)
+        await manager.add_user(chat_id,websocket)
         try:
             while True:
                 data = await websocket.receive_json()
                 text = data.get('text')
-                user_name = data.get('user_name')
-                user_id = int(data.get('user_id'))
-                await manager.send_personal_message(f"You: {text}", websocket)
-                await manager.broadcast(f"{user_name}: {data}",websocket)
-                await MessageService().add_message(db,chat_id,text,user_id)
+                token = data.get('token')
+                current_user = await get_user_by_token_from_ws(token,db)
+                # user_name = current_user.username
+                # user_id = current_user.id
+                # await manager.send_personal_message(f"You: {text}", websocket)
+                await manager.broadcast(chat_id,f"{current_user.username}: {text}")
+                await ChatMessageCache().add_message_to_cache(chat_id,f"{current_user.username}: {text}")
+                await MessageService().add_message(db,chat_id,text,current_user.id)
         except WebSocketDisconnect:
-            manager.disconnect(websocket)
+            await manager.remove_user(chat_id,websocket)
+            
     
     async def add_user(self,chat_id:int,name:str,db,current_user):
         get_chat = await super().get_chat_ojb(chat_id,db)
