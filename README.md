@@ -52,8 +52,11 @@ My Social Network offers the following features:
 
 Add screenshots of your project here to showcase its user interface and functionality.
 
-[Insert Screenshots Here]
-
+![Alt text](<Снимок экрана 2023-11-07 135753.png>)
+![Alt text](<Снимок экрана 2023-11-07 135830.png>)
+![Alt text](<Снимок экрана 2023-11-07 135843.png>)
+![Alt text](<Снимок экрана 2023-11-07 135922.png>)
+![Alt text](<Снимок экрана 2023-11-07 142614.png>)
 
 ## Installation
 
