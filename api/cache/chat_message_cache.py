@@ -31,22 +31,23 @@ class ChatMessageCache(Cache):
         await self.redis.delete(f"chat_messages_{chat_id}")
 
     async def add_message_to_cache(self,chat_id,message):
-        # cached_messages = await self.redis.get(f"chat_messages_{chat_id}")
-        # if cached_messages:
-        #     cached_messages = json.loads(cached_messages)
-        #     cached_messages = ShowChat(
-        #         previous_messages=cached_messages
-        #     )
+        cached_messages = await self.redis.get(f"chat_messages_{chat_id}")
+        if cached_messages:
+            cached_messages = json.loads(cached_messages)
+            cached_messages = ShowChat(
+                previous_messages=cached_messages
+            )
         username,text = message.split(': ',1)
         message_data = Message(
             username=username,
             text = text
         )
-        # cached_messages.previous_messages.append(message_data)
-        # cached_messages = jsonable_encoder(cached_messages.previous_messages)
-        message_data = jsonable_encoder(message_data)
-        messages = json.dumps(message_data)
-        await self.redis.rpush(f"chat_messages_{chat_id}",messages)
+        cached_messages.previous_messages.append(message_data)
+        messages = jsonable_encoder(cached_messages.previous_messages)
+        await self.redis.set(f"chat_messages_{chat_id}",json.dumps(messages))
+        # message_data = jsonable_encoder(message_data)
+        # messages = json.dumps(message_data)
+        # await self.redis.rpush(f"chat_messages_{chat_id}",messages)
 
 class RedisPubSubManager:
     def __init__(self, host='localhost', port=6379):
