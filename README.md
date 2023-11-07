@@ -50,7 +50,6 @@ My Social Network offers the following features:
 
 ## Screenshots
 
-Add screenshots of your project here to showcase its user interface and functionality.
 ![Снимок экрана 2023-11-07 135753](https://github.com/boroznovskyilia/my_social_network/assets/91383856/19336e73-5506-4145-a5db-1356535f9255)
 ![Снимок экрана 2023-11-07 135830](https://github.com/boroznovskyilia/my_social_network/assets/91383856/fb9c3cf0-4832-4d2f-918e-9e302d185673)
 ![Снимок экрана 2023-11-07 135843](https://github.com/boroznovskyilia/my_social_network/assets/91383856/aab11dd3-aa44-4b7b-a134-ba10c5d68034)
