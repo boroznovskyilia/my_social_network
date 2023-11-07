@@ -64,8 +64,8 @@ To install and run My Social Network without Docker, follow these steps:
    - Clone the project repository to your local machine:
 
      ```bash
-     git clone 
-     cd my-social-network
+     git clone https://github.com/boroznovskyilia/my_social_network.git
+     cd my_social_network
      ```
 
 2. **Set up the Backend(without Docker):**
